@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    background-color: rgb(132, 228, 228);
+}
+
+.main-nav {
+    display: flex;
+    background: #333;
+    color: #fff;
+    padding: 0.5em;
+    align-items: center;
+}
+
+.main-nav a {
+    color: #fff;
+    margin-right: 1em;
+    text-decoration: none;
+}
+
+#menu-toggle {
+    display: none;
+    margin-left: auto;
+}
+
+
+/* Hero */
+
+.hero {
+    padding: 3em 1em;
+    text-align: center;
+    background: #A3D1C6;
+}
+
+
+/* Grid for products */
+
+.product-grid {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 1em;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 1em;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width:768px) {
+    .main-nav a {
+        display: none;
+    }
+    #menu-toggle {
+        display: block;
+    }
+    .main-nav.show a {
+        display: block;
+        margin: 0.5em 0;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background-color: #fff;
+    text-align: center;
+    color: #222;
+}
+
+.category-section {
+    padding: 40px 20px;
+}
+
+.category-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.category-box {
+    width: 180px;
+    border: 4px solid transparent;
+    padding: 20px 10px;
+    background-image: url('pattern.png');
+    /* optional background */
+    background-color: #fff;
+    background-size: contain;
+    border-image: linear-gradient(to bottom, gold, darkgoldenrod) 1;
+    clip-path: polygon(15% 0%, 85% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%);
+    transition: transform 0.3s;
+}
+
+.category-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.category-box p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.category-box:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    max-width: 50%;
+    height: auto;
+}
+
+
+/* === Container Styles === */
+
+.featured-products,
+.category-section {
+    max-width: 1200px;
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+
+/* === Carousel Card === */
+
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/* Title under carousel */
+
+.product-card h3 {
+    padding: 1em;
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+}
+
+
+/* Bootstrap carousel adjustments */
+
+.carousel-inner {
+    width: 100%;
+}
+
+
+/* .carousel-item img {
+    border-bottom: 1px solid #eee;
+} */
+
+
+/* === Category Grid === */
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5em;
+}
+
+.category-box {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.category-box img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.category-box p {
+    padding: 0.8em;
+    font-weight: 600;
+    color: #444;
+}
+
+
+/* === Responsive Behavior === */
+
+@media (max-width: 768px) {
+    .category-box img {
+        height: 150px;
+    }
+}
+
+.carousel slide {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    background-position: center;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1em;
+}
+
+.carousel-inner {
+    width: 200%;
+}

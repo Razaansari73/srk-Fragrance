@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfume Store</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f7f3;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            text-align: center;
+            margin: 10px 0 5px;
+        }
+        
+        .price {
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .current-price {
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+            margin-left: 5px;
+        }
+        
+        .discount {
+            background-color: #2e7d32;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+        }
+        
+        .add-to-cart {
+            background: linear-gradient(to right, #b8860b, #ffd700);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: auto;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .footer {
+            background-color: #511d1c;
+            color: #fff;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-section p,
+        .footer-section li {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-logo {
+            width: 130px;
+            margin-bottom: 10px;
+        }
+        
+        .social-icons {
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin-right: 10px;
+            background-color: #7a5f5f;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        /* .social-icons img {
+            width: 20px;
+            height: 20px;
+        } */
+        
+        .social-icons a {
+            display: inline-block;
+            margin-right: 10px;
+            background-color: #7a5f5f;
+            /* Circle background */
+            padding: 12px;
+            border-radius: 50%;
+            color: #ffffff;
+            /* Icon color */
+            font-size: 18px;
+            /* Icon size */
+            font-weight: 600;
+            /* Icon weight */
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #c79b38;
+            /* Hover background */
+            color: #fff;
+            /* Optional: hover icon color */
+        }
+        /* Newsletter form */
+        
+        .newsletter form {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .newsletter input[type="email"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .newsletter button {
+            padding: 0 20px;
+            background-color: #c79b38;
+            border: none;
+            border-radius: 0 30px 30px 0;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="product-grid">
+        <!-- Repeat this block 16 times with different image & content -->
+        <div class="product-card">
+            <img src="images/aqwa 2.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">The Story Perfume Spray 20ml</h3>
+            <p class="price"><span class="current-price">₹399</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">The shanaya perfume 20ml</h3>
+            <p class="price"><span class="current-price">₹399</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p 3.webp" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">The shanaya Gold perfume 20ml</h3>
+            <p class="price"><span class="current-price">₹399</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p 4.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">(Combo) AQ 365 And AQ Aqua Perfume Spray 100 Ml Each</h3>
+            <p class="price"><span class="current-price">₹1499</span> <span class="old-price">₹2399</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p5.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">3 Pcs Attar Set Shanaya, Safira And Oudh Al Hashmi 5.5 ML Each</h3>
+            <p class="price"><span class="current-price">₹799</span> <span class="old-price">₹1799</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p6.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Shanaya Oud Perfume Spray 50ml</h3>
+            <p class="price"><span class="current-price">₹999</span> <span class="old-price">₹1199</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p7.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">AQ Aqua Perfume Spray 100ml</h3>
+            <p class="price"><span class="current-price">₹799</span> <span class="old-price">₹1199</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p8.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Safira Perfume Spray 100ml</h3>
+            <p class="price"><span class="current-price">₹799</span> <span class="old-price">₹1199</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p9.webp" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">The Story Luxury Attar Perfume</h3>
+            <p class="price"><span class="current-price">₹399</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p10.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Shanaya Oud Luxury Attar Perfume</h3>
+            <p class="price"><span class="current-price">₹999</span> <span class="old-price">₹1299</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p11.webp" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Luxury Premium Perfume Spray</h3>
+            <p class="price"><span class="current-price">₹1299</span> <span class="old-price">₹1999</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p12.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Luxury Gift Set 5 Pcs Premium Perfume Spray</h3>
+            <p class="price"><span class="current-price">₹1599</span> <span class="old-price">₹1999</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p13.webp" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">3 Pcs Attar Set Shanaya, Taabish And Oudh AL Hashmi 5.5 ML Each Sale price</h3>
+            <p class="price"><span class="current-price">₹599</span> <span class="old-price">₹899</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/p15.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Oudh Al Arab Bakhoor Incense Sticks (bukhur chips)</h3>
+            <p class="price"><span class="current-price">₹899</span> <span class="old-price">₹1299</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart ">ADD TO CART 🛒 </button>
+        </div>
+        <div class="product-card">
+            <img src="images/p16.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">Oudh Al Hashmi Perfume Spray</h3>
+            <p class="price"><span class="current-price">₹599</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+        <div class="product-card">
+            <img src="images/aqwa 2.jpg" alt="The Story Perfume" class="product-image" />
+            <h3 class="product-title">AQ Aqua Luxury Attar Perfume</h3>
+            <p class="price"><span class="current-price">₹599</span> <span class="old-price">₹699</span> <span class="discount">43% off</span></p>
+            <button class="add-to-cart">ADD TO CART 🛒</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo and Contact Info -->
+            <div class="footer-section">
+                <!-- <img src="your-logo.png" alt="AdilQadri Logo" class="footer-logo" /> -->
+                <h2>
+                    <I> SRK FRAGRANCE</I> </h2>
+                <p>📞 +91 8885978692</p><br>
+                <p>✉️ info@SRKFRAGRANCE.com</p>
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+
+            </div>
+
+            <!-- Categories -->
+            <div class="footer-section">
+                <h4>CATEGORIES</h4>
+                <ul>
+                    <li>Buy 3 Attars at ₹799</li>
+                    <li>Attar</li>
+                    <li>Perfume Spray</li>
+                    <li>Royal Attar Perfume</li>
+                    <li>Bakhoor</li>
+                    <li>Incense Sticks</li>
+                    <li>New Arrival</li>
+                    <li>Track Order</li>
+                    <li>Return Your Order</li>
+                    <li>Store Locator</li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li>Track Order</li>
+                    <li>Account</li>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Store Locator</li>
+                    <li>Refunds & Cancellations Policy</li>
+                    <li>Terms of Service</li>
+                    <li>Privacy Policy</li>
+                    <li>Return Your Order</li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-section newsletter">
+                <h4>NEWSLETTER</h4>
+                <p>A short sentence describing what someone will receive by subscribing</p>
+                <form>
+                    <input type="email" placeholder="Enter Your Email" />
+                    <button type="submit">➜</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
