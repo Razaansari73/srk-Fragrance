@@ -1,0 +1,84 @@
+@media (max-width: 1080px) {
+  .header-inner { grid-template-columns: 145px 1fr 145px; }
+  .desktop-nav { gap: 1rem; }
+  .footer-grid { grid-template-columns: 1.5fr repeat(2, 1fr); }
+  .footer-newsletter { grid-column: span 2; }
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hero-copy { padding: 3rem; }
+  .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 820px) {
+  .section { padding-block: 4rem; }
+  .announcement { font-size: .58rem; }
+  .header-inner { height: 68px; grid-template-columns: 1fr auto 1fr; }
+  .menu-toggle { display: grid; justify-self: start; }
+  .desktop-nav { display: none; }
+  .brand { justify-self: center; }
+  .hero-carousel { min-height: 720px; }
+  .hero-slide { grid-template-columns: 1fr; grid-template-rows: 1fr .85fr; }
+  .hero-copy { grid-row: 2; padding: 2.25rem 1.5rem 5rem; background: var(--color-primary); }
+  .hero-copy h1 { font-size: clamp(2.7rem, 10vw, 4.6rem); }
+  .hero-image { grid-row: 1; }
+  .hero-image::after { background: linear-gradient(0deg, var(--color-primary), transparent 35%); }
+  .carousel-controls { right: 1rem; bottom: 1rem; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-grid { grid-template-columns: 1fr; }
+  .story-image { max-height: 520px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-brand, .footer-newsletter { grid-column: 1 / -1; }
+  .catalog-layout { grid-template-columns: 1fr; }
+  .filters { position: fixed; z-index: 250; inset: auto 0 0; max-height: 80vh; transform: translateY(105%); overflow: auto; background: var(--color-surface); padding: 2rem 1rem; box-shadow: var(--shadow-lg); transition: transform var(--transition); }
+  .filters.is-open { transform: none; }
+  .filter-toggle { display: inline-flex; }
+  .product-detail { grid-template-columns: 1fr; }
+  .product-detail-copy { padding-top: 0; }
+  .cart-layout { grid-template-columns: 1fr; }
+  .order-summary { position: static; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .container { width: min(calc(100% - 1.25rem), var(--container)); }
+  .section-header { align-items: start; flex-direction: column; gap: .5rem; }
+  .header-actions { gap: 0; }
+  .icon-button { width: 38px; }
+  .brand span { font-size: 1.45rem; }
+  .brand small { font-size: .47rem; }
+  .hero-carousel { min-height: 690px; }
+  .hero-copy { padding-inline: 1rem; }
+  .hero-actions .button { flex: 1; padding-inline: .7rem; font-size: .68rem; }
+  .category-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  .category-card { min-height: 250px; }
+  .category-card div { right: .8rem; bottom: .8rem; left: .8rem; }
+  .category-card h3 { font-size: 1.35rem; }
+  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .product-info h3 { min-height: 3.9em; font-size: .83rem; }
+  .product-category { font-size: .58rem; }
+  .price-row { gap: .3rem; }
+  .price-row strong { font-size: .84rem; }
+  .price-row span { width: 100%; }
+  .add-button { font-size: .68rem; }
+  .benefit-grid { grid-template-columns: 1fr; }
+  .benefit { min-height: 0; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+  .footer-bottom { gap: .5rem; flex-direction: column; }
+  .catalog-tools { display: grid; grid-template-columns: 1fr 1fr; }
+  .catalog-search { grid-column: 1 / -1; max-width: none; }
+  .product-gallery-main { aspect-ratio: 1; }
+  .purchase-row { grid-template-columns: 100px 1fr 50px; }
+  .purchase-row .button { padding-inline: .5rem; font-size: .68rem; }
+  .cart-item { grid-template-columns: 86px 1fr; }
+  .cart-item > strong { grid-column: 2; }
+  .contact-form { grid-template-columns: 1fr; }
+  .form-field.full { grid-column: auto; }
+  .toast { right: .65rem; bottom: .65rem; left: .65rem; min-width: 0; }
+  .lightbox-prev { left: .5rem; }
+  .lightbox-next { right: .5rem; }
+}
+@media (max-width: 350px) {
+  .badge-link { width: 34px; }
+  .category-grid, .product-grid { grid-template-columns: 1fr; }
+  .product-info h3 { min-height: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
