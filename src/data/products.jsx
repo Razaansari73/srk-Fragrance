@@ -64,10 +64,10 @@ export const homeHeritageImages = [
 ];
 
 export const aboutHeritageImages = [
-  { src: '/images/Safwan Attar, 5.5 ml-1.webp', alt: 'Safwan branded attar bottle and presentation box' },
-  { src: '/images/p 3.webp', alt: 'Shanaya Gold branded perfume bottle and presentation box' },
-  { src: '/images/p13.webp', alt: 'Adil Qadri Captivating Gift Set with three branded fragrances' },
-  { src: '/images/p9.webp', alt: 'The Story branded non-alcoholic attar and packaging' },
+  { src: '/images/about/heritage-amber-arch.png', alt: 'Amber attar bottle on carved sandstone beneath a heritage arch' },
+  { src: '/images/about/heritage-olive-stone.png', alt: 'Smoky olive fragrance bottle arranged with sculptural dark stone' },
+  { src: '/images/about/heritage-ivory-onyx.png', alt: 'Golden attar bottle on luminous onyx in a carved cream interior' },
+  { src: '/images/about/heritage-red-sandstone.png', alt: 'Deep red attar bottle on sandstone in a terracotta alcove' },
 ];
 
 export const categories = [

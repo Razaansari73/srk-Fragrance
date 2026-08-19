@@ -28,7 +28,7 @@ export default function AboutPage() {
     document.title = "Our Story — SRK Fragrance";
   }, []);
   return (
-    <main id="main">
+    <main id="main" className="about-page">
       <PageHero
         eyebrow="Our story"
         title="Tradition, worn your way."
@@ -39,8 +39,8 @@ export default function AboutPage() {
           modern perfumery into one considered collection.
         </p>
       </PageHero>
-      <section className="section container story-grid">
-        <div className="story-image">
+      <section className="section container story-grid about-story">
+        <div className="story-image story-image--about">
           <BrandedProductCarousel
             images={aboutHeritageImages}
             interval={3000}
@@ -65,7 +65,7 @@ export default function AboutPage() {
           </Link>
         </div>
       </section>
-      <section className="section story-section">
+      <section className="section story-section about-philosophy">
         <div className="container about-quote">
           <p className="eyebrow">Our philosophy</p>
           <p>

@@ -29,6 +29,7 @@
   .category-grid { grid-template-columns: repeat(2, 1fr); }
   .story-grid { grid-template-columns: 1fr; }
   .story-image { max-height: 520px; }
+  .about-story { gap: 3rem; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-brand, .footer-newsletter { grid-column: 1 / -1; }
   .catalog-layout { grid-template-columns: 1fr; }
@@ -73,6 +74,11 @@
   .catalog-tools { display: grid; grid-template-columns: 1fr 1fr; }
   .catalog-search { grid-column: 1 / -1; max-width: none; }
   .product-gallery-main { aspect-ratio: 1; }
+  .about-page .page-hero { padding-block: 2.5rem 3rem; }
+  .about-story { padding-block: 3rem; gap: 2.4rem; }
+  .story-image--about { width: min(100%, 520px); justify-self: center; }
+  .about-philosophy { padding-block: 3.5rem; }
+  .catalog-arrivals, .catalog-collection { padding-block: 3.5rem; }
   .purchase-row { grid-template-columns: 100px 1fr 50px; }
   .purchase-row .button { padding-inline: .5rem; font-size: .68rem; }
   .cart-item { grid-template-columns: 86px 1fr; }

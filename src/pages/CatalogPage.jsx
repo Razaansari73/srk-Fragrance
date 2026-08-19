@@ -24,8 +24,11 @@ export default function CatalogPage() {
   const [max, setMax] = useState(Infinity);
   const [filtersOpen, setFiltersOpen] = useState(false);
   useEffect(() => {
-    document.title = "New Arrivals — SRK Fragrance";
+    document.title = "Collections — SRK Fragrance";
   }, []);
+  const newAttarArrivals = products
+    .filter((product) => product.category.includes("Attar"))
+    .slice(0, 4);
   const result = useMemo(() => {
     const needle = query.trim().toLowerCase();
     return products
@@ -48,13 +51,31 @@ export default function CatalogPage() {
   };
   return (
     <main id="main">
-      <PageHero eyebrow="The latest edit" title="New Arrivals">
+      <PageHero eyebrow="The fragrance edit" title="Collections">
         <p>
-          Discover our newest fragrance collection, from concentrated attars to
-          expressive perfumes.
+          Discover concentrated attars, expressive perfumes, and considered
+          fragrance rituals.
         </p>
       </PageHero>
-      <section className="section container">
+      {category === "all" && !query.trim() && (
+        <section className="section container catalog-arrivals">
+          <div className="section-header">
+            <div>
+              <p className="eyebrow">Just arrived</p>
+              <h2>New Arrivals</h2>
+            </div>
+            <p>Four distinctive attars, selected to begin your discovery.</p>
+          </div>
+          <ProductGrid products={newAttarArrivals} />
+        </section>
+      )}
+      <section className="section container catalog-collection">
+        <div className="section-header catalog-section-heading">
+          <div>
+            <p className="eyebrow">Explore every ritual</p>
+            <h2>Collections</h2>
+          </div>
+        </div>
         <div className="catalog-tools">
           <label className="catalog-search">
             <span className="sr-only">Search products</span>

@@ -12,7 +12,7 @@ const paths = {
 };
 const Icon = ({ name }) => <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 const Brand = ({ light = false }) => <Link className={`brand${light ? ' brand-light' : ''}`} to="/" aria-label="SRK Fragrance home"><span>SRK</span><small>FRAGRANCE</small></Link>;
-const links = [['/', 'Home'], ['/arrival', 'New Arrivals'], ['/arrival?category=all', 'Collections'], ['/about', 'About'], ['/contact', 'Contact']];
+const links = [['/', 'Home'], ['/arrival?category=all', 'Collections'], ['/about', 'About'], ['/contact', 'Contact']];
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
