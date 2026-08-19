@@ -1,5 +1,5 @@
 export const products = [
-  { id: 1, name: 'The Story Perfume Spray', category: 'Perfume Spray', size: '20 ml', image: '/images/aqwa 2.jpg', gallery: ['/images/aqwa 2.jpg', '/images/aqwa.jpg', '/images/aqwa 3.jpg'], price: 399, originalPrice: 699, rating: 4.8, isNew: true, isFeatured: true, description: 'A fresh French-aquatic fragrance with an elegant, easy-wearing trail.' },
+  { id: 1, name: 'The Story Perfume Spray', category: 'Perfume Spray', size: '20 ml', image: '/images/p9.webp', gallery: ['/images/p9.webp', '/images/aqwa.jpg', '/images/aqwa 3.jpg'], price: 399, originalPrice: 699, rating: 4.8, isNew: true, isFeatured: true, description: 'A fresh French-aquatic fragrance with an elegant, easy-wearing trail.' },
   { id: 2, name: 'Shanaya Perfume', category: 'Perfume Spray', size: '20 ml', image: '/images/p.jpg', gallery: ['/images/p.jpg'], price: 399, originalPrice: 699, rating: 4.7, isNew: true, isFeatured: true, description: 'A graceful everyday perfume with a smooth, modern character.' },
   { id: 3, name: 'Shanaya Gold Perfume', category: 'Royal Attar', size: '20 ml', image: '/images/p 3.webp', gallery: ['/images/p 3.webp'], price: 399, originalPrice: 699, rating: 4.9, isNew: true, isFeatured: true, description: 'Warm, opulent notes composed for evenings and memorable occasions.' },
   { id: 4, name: 'AQ 365 & AQ Aqua Duo', category: 'Gift Set', size: '2 × 100 ml', image: '/images/p 4.jpg', gallery: ['/images/p 4.jpg'], price: 1499, originalPrice: 2399, rating: 4.8, isNew: false, isFeatured: true, description: 'A versatile pairing of signature aquatic perfumes, presented for gifting.' },
@@ -19,13 +19,64 @@ export const products = [
   { id: 18, name: 'Premium Incense Sticks', category: 'Incense', size: '12 sticks', image: '/images/13.webp', gallery: ['/images/13.webp'], price: 299, originalPrice: 449, rating: 4.6, isNew: false, isFeatured: false, description: 'Slow-burning incense with a calm, beautifully layered aroma.' },
 ];
 
+export const heroSlides = [
+  {
+    eyebrow: 'The art of fragrance',
+    title: 'Discover your signature scent.',
+    copy: 'Timeless attars and refined perfumes, composed for the moments people remember.',
+    image: '/images/campaign/hero-shanaya-v2.png',
+    alt: 'Shanaya attar and branded presentation box in a warm, luxury studio setting',
+    tone: 'dark',
+    actions: [['/arrival', 'Explore collection'], ['/arrival?sort=newest', 'Shop new arrivals']],
+  },
+  {
+    eyebrow: 'A timeless ritual',
+    title: 'Luxury attars. Enduring tradition.',
+    copy: 'Concentrated, non-alcoholic fragrances that unfold beautifully on the skin.',
+    image: '/images/campaign/hero-shanaya-oud-v2.png',
+    alt: 'Shanaya Oud attar and branded presentation box in a luminous, luxury studio setting',
+    tone: 'light',
+    actions: [['/arrival?category=Attar', 'Discover attars']],
+  },
+  {
+    eyebrow: 'Considered gifting',
+    title: 'Three signatures. One memorable gesture.',
+    copy: 'A refined fragrance trio, thoughtfully presented for celebrations and meaningful moments.',
+    image: '/images/campaign/hero-captivating-gift-set-v2.png',
+    alt: 'Captivating Gift Set with three branded fragrance bottles in a dark luxury studio setting',
+    tone: 'dark',
+    mobilePosition: '100% center',
+    actions: [['/arrival?category=Gift%20Set', 'Explore gift sets']],
+  },
+];
+
+export const homeHeritageImages = [
+  { src: '/images/heritage/essence-01-safwan-arch.png', alt: 'Safwan attar and presentation box on a stone pedestal in warm architectural sunlight' },
+  { src: '/images/heritage/essence-02-safira-dark-niche.png', alt: 'Safira perfume and presentation box on black marble in a dark architectural niche' },
+  { src: '/images/heritage/essence-03-shanaya-corridor.png', alt: 'Shanaya attar and presentation box on travertine in a warm arched corridor' },
+  { src: '/images/heritage/essence-04-shanaya-oud-marble.png', alt: 'Shanaya Oud attar and presentation box on marble with cream fabric and carved architecture' },
+  { src: '/images/heritage/essence-05-zafar-dark-stone.png', alt: 'Zafar royal attar and presentation box on black stone with warm studio lighting' },
+  { src: '/images/heritage/essence-06-attar-trio-tabletop.png', alt: 'Three branded attar bottles on a traditional wooden tabletop with warm lantern light' },
+  { src: '/images/heritage/essence-07-gift-set-silk.png', alt: 'Luxury fragrance gift set open on marble with champagne fabric and heritage decor' },
+  { src: '/images/heritage/essence-08-aq-aqua-stone-ring.png', alt: 'AQ Aqua fragrance bottle and box on travertine with a sculptural stone ring backdrop' },
+  { src: '/images/heritage/essence-09-shanaya-gold-onyx.png', alt: 'Shanaya Gold perfume and box on pale onyx with carved cream architecture' },
+  { src: '/images/heritage/essence-10-royal-dark-marble.png', alt: 'Dark luxury fragrance bottle and box on black marble with sculptural stone backdrop' },
+];
+
+export const aboutHeritageImages = [
+  { src: '/images/Safwan Attar, 5.5 ml-1.webp', alt: 'Safwan branded attar bottle and presentation box' },
+  { src: '/images/p 3.webp', alt: 'Shanaya Gold branded perfume bottle and presentation box' },
+  { src: '/images/p13.webp', alt: 'Adil Qadri Captivating Gift Set with three branded fragrances' },
+  { src: '/images/p9.webp', alt: 'The Story branded non-alcoholic attar and packaging' },
+];
+
 export const categories = [
-  { name: 'Attar', image: '/images/shop 1.webp', label: 'Concentrated tradition' },
-  { name: 'Perfume Spray', image: '/images/p spray.jpg', label: 'Modern signatures' },
-  { name: 'Royal Attar', image: '/images/loyal attar.webp', label: 'Opulent compositions' },
-  { name: 'Bakhoor', image: '/images/bakhur.jpg', label: 'Atmospheric oud' },
-  { name: 'Incense', image: '/images/13.webp', label: 'A ritual of calm' },
-  { name: 'Gift Set', image: '/images/p12.jpg', label: 'Thoughtfully presented' },
+  { name: 'Attar', image: '/images/campaign/collection-attar.png', label: 'Concentrated tradition', description: 'Intimate oils that deepen beautifully on skin.' },
+  { name: 'Perfume Spray', image: '/images/campaign/collection-perfume.png', label: 'Modern signatures', description: 'Effortless compositions with an expressive trail.' },
+  { name: 'Royal Attar', image: '/images/campaign/collection-royal-attar.png', label: 'Opulent compositions', description: 'Regal depth shaped by amber, spice, and oud.' },
+  { name: 'Bakhoor', image: '/images/campaign/collection-bakhoor.png', label: 'Atmospheric oud', description: 'Warm your space with a rich, enveloping ritual.' },
+  { name: 'Incense', image: '/images/campaign/collection-incense.png', label: 'A ritual of calm', description: 'Slow-burning fragrance for considered moments.' },
+  { name: 'Gift Set', image: '/images/campaign/collection-gift-set.png', label: 'Thoughtfully presented', description: 'Curated scents made to mark the occasion.' },
 ];
 
 export const findProduct = (id) => products.find((product) => product.id === Number(id));

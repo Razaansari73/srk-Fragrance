@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 const KEYS = { cart: 'srk-cart', favorites: 'srk-favorites' };
 const read = (key, fallback) => {
@@ -23,13 +23,13 @@ export function StoreProvider({ children }) {
     const next = typeof updater === 'function' ? updater(current) : updater;
     persist(KEYS.favorites, next); return next;
   });
-  const notify = (message, showCart = false) => {
+  const notify = useCallback((message, showCart = false) => {
     setToast({ message, showCart, id: Date.now() });
     window.setTimeout(() => setToast((current) => current?.message === message ? null : current), 4000);
-  };
+  }, []);
 
   const value = useMemo(() => ({
-    cart, favorites, toast, dismissToast: () => setToast(null),
+    cart, favorites, toast, notify, dismissToast: () => setToast(null),
     isFavorite: (id) => favorites.includes(Number(id)),
     toggleFavorite: (id) => {
       const value = Number(id); const active = !favorites.includes(value);
@@ -45,7 +45,7 @@ export function StoreProvider({ children }) {
     },
     updateCart: (id, quantity) => setCart((items) => items.map((item) => item.id === Number(id) ? { ...item, quantity: Math.max(1, quantity) } : item)),
     removeFromCart: (id) => setCart((items) => items.filter((item) => item.id !== Number(id))),
-  }), [cart, favorites, toast]);
+  }), [cart, favorites, toast, notify]);
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
 }

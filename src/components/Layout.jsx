@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/StoreContext.jsx';
+import { formatPrice, products } from '../data/products.jsx';
 
 const paths = {
   search: <><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></>,
@@ -16,11 +17,18 @@ const links = [['/', 'Home'], ['/arrival', 'New Arrivals'], ['/arrival?category=
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const { cart, favorites } = useStore();
   const navigate = useNavigate();
+  const closeSearch = () => { setSearchOpen(false); setSearchQuery(''); };
+  const searchResults = useMemo(() => {
+    const needle = searchQuery.trim().toLowerCase();
+    if (!needle) return products.filter((product) => product.isFeatured).slice(0, 4);
+    return products.filter((product) => `${product.name} ${product.category} ${product.description}`.toLowerCase().includes(needle)).slice(0, 6);
+  }, [searchQuery]);
   useEffect(() => {
     document.body.classList.toggle('overlay-open', menuOpen || searchOpen);
-    const close = (event) => event.key === 'Escape' && (setMenuOpen(false), setSearchOpen(false));
+    const close = (event) => event.key === 'Escape' && (setMenuOpen(false), closeSearch());
     document.addEventListener('keydown', close);
     return () => { document.removeEventListener('keydown', close); document.body.classList.remove('overlay-open'); };
   }, [menuOpen, searchOpen]);
@@ -29,13 +37,12 @@ function Header() {
     <a className="skip-link" href="#main">Skip to content</a>
     <div className="announcement">Complimentary delivery on orders above ₹999</div>
     <header className="site-header"><div className="header-inner container">
-      <button className="icon-button menu-toggle" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(true)}><Icon name="menu" /></button>
+      <button className="menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => { setSearchOpen(false); setMenuOpen((open) => !open); }}><Icon name={menuOpen ? 'close' : 'menu'} /><span>{menuOpen ? 'Close' : 'Menu'}</span></button>
       <Brand /><nav className="desktop-nav" aria-label="Primary navigation">{navigation}</nav>
-      <div className="header-actions"><button className="icon-button search-toggle" aria-label="Search fragrances" onClick={() => setSearchOpen(true)}><Icon name="search" /></button><Link className="icon-button badge-link" to="/favorites" aria-label="Favorites"><Icon name="heart"/><span>{favorites.length}</span></Link><Link className="icon-button badge-link" to="/cart" aria-label="Shopping cart"><Icon name="bag"/><span>{cart.reduce((sum, item) => sum + item.quantity, 0)}</span></Link></div>
-    </div>
-    <div className="mobile-panel" aria-hidden={!menuOpen}><button className="icon-button mobile-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}><Icon name="close"/></button><p className="eyebrow">Explore SRK</p><nav aria-label="Mobile navigation">{navigation}</nav></div>
-    <div className="search-panel" aria-hidden={!searchOpen}><form className="container search-form" onSubmit={(event) => { event.preventDefault(); const q = new FormData(event.currentTarget).get('q'); setSearchOpen(false); navigate(`/arrival?q=${encodeURIComponent(q)}`); }}><label htmlFor="site-search">Search our collection</label><div><input autoFocus={searchOpen} id="site-search" name="q" type="search" placeholder="Try “oud” or “attar”" autoComplete="off"/><button className="button button-dark">Search</button><button className="icon-button search-close" type="button" aria-label="Close search" onClick={() => setSearchOpen(false)}><Icon name="close"/></button></div></form></div>
-    </header>
+      <div className="header-actions"><button className="icon-button search-toggle" aria-label="Search fragrances" onClick={() => { setMenuOpen(false); setSearchOpen(true); }}><Icon name="search" /></button><Link className="icon-button badge-link" to="/favorites" aria-label="Favorites"><Icon name="heart"/><span>{favorites.length}</span></Link><Link className="icon-button badge-link" to="/cart" aria-label="Shopping cart"><Icon name="bag"/><span>{cart.reduce((sum, item) => sum + item.quantity, 0)}</span></Link></div>
+    </div></header>
+    <div className="mobile-panel" id="mobile-navigation" aria-hidden={!menuOpen}><div className="mobile-panel-top"><Brand/><button className="mobile-close" aria-label="Close menu" onClick={() => setMenuOpen(false)}><Icon name="close"/><span>Close</span></button></div><div className="mobile-panel-body"><p className="eyebrow">Explore SRK</p><nav aria-label="Mobile navigation">{navigation}</nav></div></div>
+    <div className="search-panel" aria-hidden={!searchOpen} onMouseDown={(event) => event.target === event.currentTarget && closeSearch()}><section className="search-dialog" role="dialog" aria-modal="true" aria-labelledby="search-title"><div className="search-dialog-head"><div><p className="eyebrow">Discover your fragrance</p><h2 id="search-title">Search our collection</h2></div><button className="icon-button search-close" type="button" aria-label="Close search" onClick={closeSearch}><Icon name="close"/></button></div><form className="search-form" onSubmit={(event) => { event.preventDefault(); const q = searchQuery.trim(); closeSearch(); navigate(`/arrival?q=${encodeURIComponent(q)}`); }}><label className="sr-only" htmlFor="site-search">Search fragrances and products</label><div className="search-input-wrap"><Icon name="search"/><input autoFocus={searchOpen} id="site-search" name="q" type="search" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Try “oud”, “attar” or “gift set”" autoComplete="off"/><button className="button button-dark" type="submit">View all</button></div></form><div className="search-results" aria-live="polite"><div className="search-results-head"><span>{searchQuery.trim() ? `${searchResults.length} result${searchResults.length === 1 ? '' : 's'}` : 'Popular fragrances'}</span>{searchQuery.trim() && <Link to={`/arrival?q=${encodeURIComponent(searchQuery.trim())}`} onClick={closeSearch}>See all</Link>}</div>{searchResults.length ? <div className="search-result-list">{searchResults.map((product) => <Link className="search-result" key={product.id} to={`/product?id=${product.id}`} onClick={closeSearch}><span className="search-result-image"><img src={product.image} alt=""/></span><span className="search-result-copy"><strong>{product.name}</strong><small>{product.category} · {product.size}</small></span><b>{formatPrice(product.price)}</b></Link>)}</div> : <p className="search-empty">No fragrances found. Try a broader search.</p>}</div></section></div>
   </>;
 }
 
