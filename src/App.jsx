@@ -14,6 +14,7 @@ import FavoritesPage from "./pages/FavoritesPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
 
 function LegacyRedirect() {
   const { pathname, search, hash } = useLocation();
@@ -33,6 +34,10 @@ function CatalogRoute() {
 export default function App() {
   return (
     <Routes>
+      <Route path="login" element={<AuthPage />} />
+      <Route path="register" element={<AuthPage />} />
+      <Route path="verify" element={<AuthPage />} />
+      <Route path="auth/callback" element={<AuthPage />} />
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="arrival" element={<CatalogRoute />} />
