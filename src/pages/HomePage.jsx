@@ -16,12 +16,12 @@ function HeroCarousel() {
   const show = (index) =>
     setActive((index + heroSlides.length) % heroSlides.length);
   useEffect(() => {
-    const timer = window.setInterval(
+    const timer = window.setTimeout(
       () => setActive((value) => (value + 1) % heroSlides.length),
-      2000,
+      5000,
     );
-    return () => window.clearInterval(timer);
-  }, []);
+    return () => window.clearTimeout(timer);
+  }, [active]);
   return (
     <section
       className="hero-carousel"
@@ -44,7 +44,11 @@ function HeroCarousel() {
           key={slide.title}
           className={`hero-slide hero-slide--${slide.tone}${index === active ? " is-active" : ""}`}
           aria-hidden={index !== active}
-          style={slide.mobilePosition ? { "--hero-mobile-position": slide.mobilePosition } : undefined}
+          style={
+            slide.mobilePosition
+              ? { "--hero-mobile-position": slide.mobilePosition }
+              : undefined
+          }
         >
           <div className="hero-image">
             <img src={slide.image} alt={slide.alt} />

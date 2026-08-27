@@ -9,21 +9,23 @@
   --color-accent-soft: #d8bd86;
   --color-border: #ded5c8;
   --color-success: #42634c;
-  --font-display: Georgia, 'Times New Roman', serif;
-  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --space-1: .25rem;
-  --space-2: .5rem;
-  --space-3: .75rem;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
   --space-4: 1rem;
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
   --space-8: 5rem;
-  --radius-sm: .35rem;
-  --radius-md: .75rem;
+  --radius-sm: 0.35rem;
+  --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
-  --shadow-sm: 0 8px 24px rgba(36, 23, 19, .07);
-  --shadow-lg: 0 22px 60px rgba(36, 23, 19, .14);
+  --shadow-sm: 0 8px 24px rgba(36, 23, 19, 0.07);
+  --shadow-lg: 0 22px 60px rgba(36, 23, 19, 0.14);
   --transition: 180ms ease;
   --container: 1240px;
 }
