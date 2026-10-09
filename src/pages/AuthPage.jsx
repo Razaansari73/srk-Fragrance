@@ -334,10 +334,12 @@ export default function AuthPage() {
   const [mode, setMode] = useState(initialMode);
   const [step, setStep] = useState("entry");
   const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [registration, setRegistration] = useState({
     fullName: "",
     email: "",
     mobile: "",
+    password: "",
   });
   const [challenge, setChallenge] = useState(null);
   const [profileToken, setProfileToken] = useState("");
@@ -366,9 +368,7 @@ export default function AuthPage() {
     if (!value) throw new AuthError("Please enter your phone number.");
     const digits = value.replace(/[\s()-]/g, "");
     if (/^\+?\d{8,15}$/.test(digits)) return digits;
-    throw new AuthError(
-      "Enter a valid phone number, including country code.",
-    );
+    throw new AuthError("Enter a valid phone number, including country code.");
   };
   const validateEntry = () => {
     if (mode === "login") return validatePhone(identifier);
@@ -380,10 +380,14 @@ export default function AuthPage() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       throw new AuthError("Please enter a valid email address.");
     }
+    if (registration.password.length < 6) {
+      throw new AuthError("Password must be at least 6 characters.");
+    }
     return {
       fullName,
       email,
       mobile: validatePhone(registration.mobile),
+      password: registration.password,
     };
   };
   const sendCode = async (event) => {
@@ -412,6 +416,73 @@ export default function AuthPage() {
       navigate("/verify", { replace: true, state: { fromAuth: true, mode } });
     } catch (requestError) {
       setError(requestError.message);
+    } finally {
+      setBusy("");
+    }
+  };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    setError("");
+
+    let phone;
+
+    try {
+      phone = validatePhone(identifier);
+
+      if (!password.trim()) {
+        throw new AuthError("Please enter your password.");
+      }
+    } catch (validationError) {
+      return setError(validationError.message);
+    }
+
+    setBusy("login");
+
+    try {
+      await authService.login(phone, password);
+
+      navigate(returnTo, { replace: true });
+    } catch (loginError) {
+      setError(loginError.message);
+    } finally {
+      setBusy("");
+    }
+  };
+
+  const handleRegister = async (event) => {
+    event.preventDefault();
+    setError("");
+
+    const { fullName, mobile, password } = registration;
+
+    if (!fullName.trim() || !mobile.trim() || !password.trim()) {
+      setError("Please fill all required fields.");
+      return;
+    }
+
+    let phone;
+
+    try {
+      phone = validatePhone(mobile);
+    } catch (error) {
+      setError(error.message);
+      return;
+    }
+
+    setBusy("register");
+
+    try {
+      await authService.completeRegistration({
+        name: fullName.trim(),
+        phone,
+        password,
+      });
+
+      navigate("/login", { replace: true });
+      setMode("login");
+    } catch (error) {
+      setError(error.message);
     } finally {
       setBusy("");
     }
@@ -559,7 +630,7 @@ export default function AuthPage() {
                   className={
                     mode === "register" ? "auth-profile" : "identifier-form"
                   }
-                  onSubmit={sendCode}
+                  onSubmit={mode === "login" ? handleLogin : handleRegister}
                   noValidate
                 >
                   {mode === "register" && (
@@ -603,9 +674,7 @@ export default function AuthPage() {
                   )}
                   <label
                     htmlFor={
-                      mode === "register"
-                        ? "register-phone"
-                        : "auth-identifier"
+                      mode === "register" ? "register-phone" : "auth-identifier"
                     }
                   >
                     Phone Number
@@ -616,9 +685,7 @@ export default function AuthPage() {
                           : "auth-identifier"
                       }
                       value={
-                        mode === "register"
-                          ? registration.mobile
-                          : identifier
+                        mode === "register" ? registration.mobile : identifier
                       }
                       onChange={(event) =>
                         mode === "register"
@@ -643,13 +710,53 @@ export default function AuthPage() {
                       Include your country code (for example, +91).
                     </small>
                   )}
+
+                  {mode === "register" && (
+                    <label htmlFor="register-password">
+                      Password
+                      <input
+                        id="register-password"
+                        type="password"
+                        value={registration.password}
+                        onChange={(event) =>
+                          setRegistration({
+                            ...registration,
+                            password: event.target.value,
+                          })
+                        }
+                        autoComplete="new-password"
+                        placeholder="Enter your password"
+                        minLength={6}
+                        required
+                      />
+                    </label>
+                  )}
+
+                  {mode === "login" && (
+                    <label htmlFor="login-password">
+                      Password
+                      <input
+                        id="login-password"
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        autoComplete="current-password"
+                        placeholder="Enter your password"
+                        required
+                      />
+                    </label>
+                  )}
+
                   <button className="auth-primary" disabled={Boolean(busy)}>
-                    {busy === "otp" && <Spinner />}
-                    {busy === "otp"
-                      ? "Sending code…"
-                      : mode === "register"
-                        ? "Create Account / Continue"
-                        : "Continue"}
+                    {(busy === "login" || busy === "register") && <Spinner />}
+
+                    {busy === "login"
+                      ? "Signing in..."
+                      : busy === "register"
+                        ? "Creating account..."
+                        : mode === "register"
+                          ? "Create Account / Continue"
+                          : "Continue"}
                   </button>
                 </form>
                 <p className="auth-switch">

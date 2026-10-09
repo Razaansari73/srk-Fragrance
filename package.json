@@ -7,10 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
+    "jsonwebtoken": "^9.0.3",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",

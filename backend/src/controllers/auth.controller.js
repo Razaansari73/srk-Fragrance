@@ -55,7 +55,7 @@ export const login = async (req, res) => {
     res.cookie("accessToken", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "lax",
+      sameSite: "strict",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -78,3 +78,27 @@ export const login = async (req, res) => {
 };
 
 
+// ================================
+// logout
+// ================================
+
+export const logout = async (req, res) => {
+  try {
+    res.clearCookie("accessToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "strict",
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Logout successful",
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+    });
+  }
+};

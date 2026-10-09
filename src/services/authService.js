@@ -46,6 +46,16 @@ async function request(path, options = {}) {
 
 export const authService = {
   isConfigured: Boolean(API_BASE),
+
+  login(phone, password) {
+    return request('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        phone,
+        password,
+      }),
+    });
+  },
   async getSession() {
     if (!API_BASE) return null;
     try { return await request('/auth/session'); } catch (error) {
@@ -72,3 +82,4 @@ export const authService = {
     return request('/auth/register', { method: 'POST', body: JSON.stringify({ ...details, verificationToken }) });
   },
 };
+

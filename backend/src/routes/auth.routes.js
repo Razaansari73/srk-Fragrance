@@ -3,6 +3,7 @@ import express from "express";
 import {
   register,
   login,
+  logout,
 } from "../controllers/auth.controller.js";
 
 import { validate } from "../middlewares/validate.js";
@@ -28,6 +29,12 @@ router.post(
   "/login",
   validate(loginSchema),
   login
+);
+
+// Logout
+router.post(
+  "/logout",
+  logout
 );
 
 router.get("/profile", authenticate, (req, res) => {
