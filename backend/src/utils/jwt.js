@@ -5,6 +5,7 @@ export const signToken = (user) => {
     {
       id: user.id,
       phone: user.phone,
+      role: user.role,
     },
     process.env.JWT_SECRET,
     {

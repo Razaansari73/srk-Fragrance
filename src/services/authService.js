@@ -56,9 +56,15 @@ export const authService = {
       }),
     });
   },
+  logout() {
+    return request('/auth/logout', { method: 'POST' });
+  },
   async getSession() {
     if (!API_BASE) return null;
-    try { return await request('/auth/session'); } catch (error) {
+    try {
+      const response = await request('/auth/session');
+      return response.data ?? response;
+    } catch (error) {
       if (error.code === 'SESSION_EXPIRED' || error.code === 'AUTH_ERROR') return null;
       throw error;
     }

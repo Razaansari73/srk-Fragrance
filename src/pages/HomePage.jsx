@@ -7,8 +7,8 @@ import {
   categories,
   heroSlides,
   homeHeritageImages,
-  products,
 } from "../data/products.jsx";
+import { productService } from "../services/productService.js";
 
 function HeroCarousel() {
   const [active, setActive] = useState(0);
@@ -108,8 +108,29 @@ const benefits = [
 ];
 
 export default function HomePage() {
+  const [signatureProducts, setSignatureProducts] = useState([]);
+  const [signatureStatus, setSignatureStatus] = useState("loading");
+
   useEffect(() => {
     document.title = "SRK Fragrance — The Art of Fragrance";
+  }, []);
+  useEffect(() => {
+    let active = true;
+
+    productService
+      .getFeaturedProducts()
+      .then((featuredProducts) => {
+        if (!active) return;
+        setSignatureProducts(featuredProducts.slice(0, 4));
+        setSignatureStatus(featuredProducts.length ? "success" : "empty");
+      })
+      .catch(() => {
+        if (active) setSignatureStatus("error");
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
   return (
     <main id="main">
@@ -128,9 +149,24 @@ export default function HomePage() {
             View all fragrances
           </Link>
         </div>
-        <ProductGrid
-          products={products.filter((item) => item.isFeatured).slice(0, 4)}
-        />
+        {signatureStatus === "loading" && (
+          <p className="signature-status" role="status">
+            Loading signature fragrances…
+          </p>
+        )}
+        {signatureStatus === "error" && (
+          <p className="signature-status" role="alert">
+            Signature fragrances are temporarily unavailable.
+          </p>
+        )}
+        {signatureStatus === "empty" && (
+          <p className="signature-status" role="status">
+            No signature fragrances are available right now.
+          </p>
+        )}
+        {signatureStatus === "success" && (
+          <ProductGrid products={signatureProducts} />
+        )}
       </section>
       <section className="section collection-section">
         <div className="container">

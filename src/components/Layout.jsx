@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { useStore } from "../store/StoreContext.jsx";
 import { formatPrice, products } from "../data/products.jsx";
+import { authService } from "../services/authService.js";
 
 const paths = {
   search: (
@@ -68,6 +69,8 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [user, setUser] = useState(null);
+  const [loggingOut, setLoggingOut] = useState(false);
   const { cart, favorites } = useStore();
   const navigate = useNavigate();
   const closeSearch = () => {
@@ -87,6 +90,19 @@ function Header() {
       .slice(0, 6);
   }, [searchQuery]);
   useEffect(() => {
+    let active = true;
+
+    authService.getSession().then((session) => {
+      if (active) setUser(session?.user ?? null);
+    }).catch(() => {
+      if (active) setUser(null);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+  useEffect(() => {
     document.body.classList.toggle("overlay-open", menuOpen || searchOpen);
     const close = (event) =>
       event.key === "Escape" && (setMenuOpen(false), closeSearch());
@@ -101,6 +117,17 @@ function Header() {
       {label}
     </NavLink>
   ));
+  const logout = async () => {
+    if (loggingOut) return;
+    setLoggingOut(true);
+    try {
+      await authService.logout();
+      setUser(null);
+      navigate("/login", { replace: true });
+    } finally {
+      setLoggingOut(false);
+    }
+  };
   return (
     <>
       <a className="skip-link" href="#main">
@@ -139,13 +166,26 @@ function Header() {
             >
               <Icon name="search" />
             </button>
-            <Link
-              className="icon-button account-link"
-              to="/login"
-              aria-label="Sign in or create account"
-            >
-              <Icon name="user" />
-            </Link>
+            {user ? (
+              <button
+                className="icon-button account-link"
+                type="button"
+                aria-label="Log out"
+                title="Log out"
+                disabled={loggingOut}
+                onClick={logout}
+              >
+                <Icon name="user" />
+              </button>
+            ) : (
+              <Link
+                className="icon-button account-link"
+                to="/login"
+                aria-label="Sign in or create account"
+              >
+                <Icon name="user" />
+              </Link>
+            )}
             <Link
               className="icon-button badge-link"
               to="/favorites"

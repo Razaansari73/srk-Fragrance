@@ -1,14 +1,12 @@
 import { verifyToken } from "../utils/jwt.js";
+import { AppError } from "../utils/AppError.js";
 
 export const authenticate = (req, res, next) => {
   try {
     const token = req.cookies?.accessToken;
 
     if (!token) {
-      return res.status(401).json({
-        success: false,
-        message: "Token not provided",
-      });
+      throw new AppError("Token not provided", 401);
     }
 
     const decoded = verifyToken(token);
@@ -18,9 +16,10 @@ export const authenticate = (req, res, next) => {
     next();
 
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid or expired token",
-    });
+    next(
+      error instanceof AppError
+        ? error
+        : new AppError("Invalid or expired token", 401)
+    );
   }
 };

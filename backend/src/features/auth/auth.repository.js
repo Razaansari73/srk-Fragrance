@@ -1,8 +1,8 @@
-import { db } from "../config/db.js";
+import { db } from "../../config/db.js";
 
 export const findUserByPhone = async (phone) => {
   const [rows] = await db.query(
-    `SELECT id, name, phone, password
+    `SELECT id, name, phone, password, role
      FROM users
      WHERE phone = ?
      LIMIT 1`,

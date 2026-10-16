@@ -14,6 +14,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "jsonwebtoken": "^9.0.3",
+    "multer": "^2.4.0",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
